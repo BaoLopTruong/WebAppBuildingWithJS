@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 2: Validate Account</title>
+</head>
+<body>
+    <script>
+        function ValidateAcc(acc){
+            let validateacc = /^[_a-z0-9]{6,}$/;
+            return validateacc.test(acc);
+        }
+        console.log('123abc_', ValidateAcc('123abc_'));
+        console.log('_abc123', ValidateAcc('_abc123'));
+        console.log('______', ValidateAcc('______'));
+        console.log('123456', ValidateAcc('123456'));
+        console.log('abcdefg', ValidateAcc('abcdefg'));
+        console.log('.@', ValidateAcc('.@'));
+        console.log('12345', ValidateAcc('12345'));
+        console.log('1234_', ValidateAcc('1234_'));
+        console.log('abcde ', ValidateAcc('abcde '));
+    </script>
+</body>
+</html>
