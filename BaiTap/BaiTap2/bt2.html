@@ -7,7 +7,24 @@
     <title>Bài tập 2: Validate Account</title>
 </head>
 <body>
+    <form action="">
+        <input type="text" name="account" id="acc" onkeyup="IsValidAcc(this)" required>
+        <span id="result"></span>
+    </form>
+
     <script>
+        function IsValidAcc(obj){
+            let isvalidateacc = /^[_a-z0-9]{6,}$/;
+            let isValidAcc = isvalidateacc.test(obj);
+            if(!isValidAcc){
+                document.getElementById('result').innerHTML = "Error";
+            }
+            else{
+                document.getElementById('result').style.display = "none";
+            }
+        }
+
+
         function ValidateAcc(acc){
             let validateacc = /^[_a-z0-9]{6,}$/;
             return validateacc.test(acc);
