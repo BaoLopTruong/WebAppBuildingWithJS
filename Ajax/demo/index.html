@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+       
     <title>Demo Call Back</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-    function greet(name, callback) {
-        console.log('Hi' + ' ' + name);
-        callback();
-    }
+      // function greet(name, callback) {
+      //     console.log('Hi' + ' ' + name);
+      //     callback();
+      // }
 
-    let greet = (name, callback) =>{
-        console.log('Hello ' + name);
-        callback();
-    }
-    let callMe = () =>{
-        console.log('I am callback function');
-    }
+      // let greet = (name, callback) =>{
+      //     console.log('Hello ' + name);
+      //     callback();
+      // }
+      // let callMe = () =>{
+      //     console.log('I am callback function');
+      // }
 
+      function asyncFunction(callback) {
+        console.log("Start");
+        setTimeout(() => {
+          callback();
+        }, 1000);
+        console.log("Waiting");
+      }
+      let printEnd = function () {
+        console.log("End");
+      };
+
+      asyncFunction(printEnd);
     </script>
-</body>
+  </body>
 </html>
