@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Xây dựng ứng dụng tìm ảnh động vui nhộn</title>
+    <style>
+        body{
+            background-color: black;
+            text-align: center;
+        }
+        h1{
+            color: white;
+        }
+    </style>
+  </head>
+  <body>
+      <h1>GIPHY PARTY</h1>
+    <form action="">
+      <input type="text" id="input" placeholder="Search" />
+      <input type="button" value="Search" onclick="SearchFunction()" />
+      <input type="button" value="Remove Gif" onclick="RemoveFunction()" />
+      <!-- <span id="test_demo"></span> -->
+      <br /> <br>
+      <img
+        id="img_id"
+      />
+     
+    </form>
+    <script>
+    //   let link =
+    //     "http://api.giphy.com/v1/gifs/search?q=foot&api_key=OaI8Scqh6gxKwYuB0TXRiZxeyTICIFcX";
+
+      function SearchFunction() {
+        let url = "http://api.giphy.com/v1/gifs/search?q=";
+        let api_key = "&api_key=OaI8Scqh6gxKwYuB0TXRiZxeyTICIFcX";
+        let demo = document.getElementById("input").value;
+        let text =   url + demo + api_key;
+        axios
+          .get(text)
+          .then((result) => {
+            console.log(result.data.data[2].images.original.url);
+             document.getElementById('img_id').src= result.data.data[8].images.original.url;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      function RemoveFunction(){
+          document.getElementById('img_id').src="";
+      }
+    </script>
+  </body>
+</html>
