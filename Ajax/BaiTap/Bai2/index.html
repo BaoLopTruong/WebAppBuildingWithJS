@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Bài tập 2: Xây dựng ứng dụng dự báo thời tiết</title>
-</head>
-<body>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dự báo thời tiết</h1>
+    <form action="">
+      <input type="text" id="input" placeholder="Write your location" />
+      <input type="button" value="Search" onclick="SearchFunction()" />
+    </form>
+    <div id="result"></div>
+
     <script>
-        let url ="http://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=63b464d1dc95934f42129614e6499735";
-        axios.get(url).then((result) =>{console.log(result.data)}).catch((error) =>{console.log(error)});
+      //   let url =
+      //     "http://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=63b464d1dc95934f42129614e6499735";
+
+      function SearchFunction() {
+        let url = "http://api.openweathermap.org/data/2.5/weather?q=";
+        let appid = "&appid=63b464d1dc95934f42129614e6499735";
+        let location = document.getElementById("input").value;
+        let link = url + location + appid;
+        // let html=  document.getElementById('result').innerHTML;
+        axios
+          .get(link)
+          .then((result) => {
+            console.log(result.data);
+            document.getElementById("result").innerHTML =
+            '<img src=" http://openweathermap.org/img/w/04d.png" >"' + "<br>" +
+              "Temperature:" + parseInt(result.data.main.temp  - 273.15) + "℃" +
+              "<br>Humidity: " +(result.data.main.humidity) + "%" +
+              "<br>Cloud: " + result.data.weather[0].description +
+              "<br>Visibility: " + (result.data.visibility) + "km" +
+              "<br>Wind: " + parseInt(result.data.wind.speed * 3.6) + "km/h"
+              
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     </script>
-</body>
+  </body>
 </html>
