@@ -23,7 +23,12 @@
     <script>
       //   let url =
       //     "http://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=63b464d1dc95934f42129614e6499735";
-
+        let arr =[
+            'http://openweathermap.org/img/w/04d.png',
+            'http://openweathermap.org/img/w/03n.png',
+            'http://openweathermap.org/img/w/10d.png',
+            'http://openweathermap.org/img/w/10n.png',
+    ]
       function SearchFunction() {
         let url = "http://api.openweathermap.org/data/2.5/weather?q=";
         let appid = "&appid=63b464d1dc95934f42129614e6499735";
@@ -34,8 +39,17 @@
           .get(link)
           .then((result) => {
             console.log(result.data);
+              let urlImage;
+              
+              if(parseInt(result.data.main.temp  - 273.15) >30 || result.data.weather[0].description == "clear sky"){
+                    urlImage = arr[2];
+              }
+              else if(parseInt(result.data.main.temp  - 273.15) <30 ||  result.data.weather[0].description == "overcast clouds"){
+                    urlImage = arr[0];
+              }
+            
             document.getElementById("result").innerHTML =
-            '<img src=" http://openweathermap.org/img/w/04d.png" >"' + "<br>" +
+            '<img src=" '+ urlImage +'" >"' + "<br>" +
               "Temperature:" + parseInt(result.data.main.temp  - 273.15) + "℃" +
               "<br>Humidity: " +(result.data.main.humidity) + "%" +
               "<br>Cloud: " + result.data.weather[0].description +
